@@ -154,8 +154,12 @@ KM.tree([
       {
         id: 'series', no: '12', title: '无穷级数',
         topics: [
-          { id: 'convergence',   title: '正项级数敛散性判别' },
-          { id: 'general-series', title: '交错级数与任意项级数' },
+          { id: 'convergence',   title: '正项级数敛散性判别',
+            file: 'content/calculus/12-series/convergence.js' },
+          { id: 'general-series', title: '交错级数与任意项级数',
+            file: 'content/calculus/12-series/general-series.js' },
+          { id: 'abstract',      title: '抽象级数：按运算判敛散',
+            file: 'content/calculus/12-series/abstract.js' },
           { id: 'power-series',  title: '幂级数收敛域与和函数',
             file: 'content/calculus/12-series/power-series.js' },
           { id: 'sum-function',  title: '求和函数：四条路线与递推型难题',
