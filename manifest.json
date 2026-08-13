@@ -1,0 +1,26 @@
+{
+  "name": "考研数学一 · 复习知识库",
+  "short_name": "数学一",
+  "description": "按知识树组织的题型、方法与个人思路",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "lang": "zh-CN",
+  "background_color": "#14161a",
+  "theme_color": "#1d4ed8",
+  "icons": [
+    {
+      "src": "assets/icon/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
