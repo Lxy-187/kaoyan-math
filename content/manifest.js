@@ -158,6 +158,8 @@ KM.tree([
           { id: 'general-series', title: '交错级数与任意项级数' },
           { id: 'power-series',  title: '幂级数收敛域与和函数',
             file: 'content/calculus/12-series/power-series.js' },
+          { id: 'sum-function',  title: '求和函数：四条路线与递推型难题',
+            file: 'content/calculus/12-series/sum-function.js' },
           { id: 'expansion',     title: '函数展开成幂级数' },
           { id: 'fourier',       title: '傅里叶级数' },
         ],

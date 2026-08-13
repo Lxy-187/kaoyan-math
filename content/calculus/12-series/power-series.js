@@ -28,6 +28,13 @@ KM.page({
     /* ================================================================== */
     { t: 'h', id: 'decision', c: '一、逆向识别：三问定家族' },
 
+    { t: 'md', c: String.raw`
+      **先确认这一页适不适用**：下面这套字典的前提是==你手上有一般项的显式表达式==。
+      如果题目==只给一条递推关系==（如 $(n+1)a_{n+1}=\left(n+\frac12\right)a_n$），
+      通项要么求不出、要么求出来也不在字典里，那就换一条路 ——
+      见[求和函数：路线四，构造微分方程](#/calculus/series/sum-function?at=route4)。
+    ` },
+
     { t: 'steps', id: 'three-questions', title: '拿到一般项，按顺序问这三句', items: [
       { title: '分母有没有阶乘？',
         c: String.raw`**有** $\Rightarrow$ [第二家族](#/calculus/series/power-series?at=family-factorial)：
