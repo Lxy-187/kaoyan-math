@@ -166,6 +166,8 @@ KM.tree([
             file: 'content/calculus/12-series/sum-function.js' },
           { id: 'expansion',     title: '函数展开成幂级数' },
           { id: 'fourier',       title: '傅里叶级数' },
+          { id: 'beyond',        title: '越过考纲：重排、柯西乘积与广义求和',
+            file: 'content/calculus/12-series/beyond.js' },
         ],
       },
     ],
