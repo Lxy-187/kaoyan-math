@@ -150,25 +150,181 @@ KM.page({
     ` },
 
     /* ================================================================== */
-    { t: 'h', id: 'product', c: '四、乘积：两个收敛级数逐项相乘' },
+    { t: 'h', id: 'product', c: '四、乘积：逐项相乘' },
 
-    { t: 'key', id: 'product-core', title: '$\\sum a_nb_n$ 一般不收敛，除非有一边"够强"', c: String.raw`
-      **反例（都只是条件收敛）**：$a_n=b_n=\dfrac{(-1)^{n}}{\sqrt n}$，
-      两者都收敛，而 $a_nb_n=\dfrac1n$ ==发散==。
-      ==这个反例和平方那个是同一个==，因为 $\sum a_n^{2}$ 就是 $b_n=a_n$ 的特例。
+    { t: 'key', id: 'translate', title: '第一原则：把"级数的敛散"翻译成"通项的信息"', c: String.raw`
+      乘法是==逐项==进行的运算，所以它只认通项 $a_n,b_n$ 本身，
+      ==根本不关心 $\sum a_n$ 收不收敛==。
+      于是每个条件都必须先翻译一遍，看它到底给了通项什么信息：
 
-      **三种能保住的情形**：
-
-      | 条件 | 结论 | 依据 |
+      | 题目给的条件 | 翻译成通项的信息 | 对乘积有用吗 |
       |---|---|---|
-      | $\sum a_n$、$\sum b_n$ ==都绝对收敛== | $\sum a_nb_n$ 绝对收敛 | $a_n,b_n\to0$，最终 $\left\|a_nb_n\right\|\leq\left\|a_n\right\|$ |
-      | $\sum a_n$ 收敛，$b_n$ ==单调有界== | 收敛 | [阿贝尔判别法](#/calculus/series/general-series?at=two-tests) |
-      | $a_n,b_n\geq0$ 且都收敛 | 收敛 | $a_nb_n\leq\frac{a_n^{2}+b_n^{2}}{2}$ 或直接比较 |
+      | $\sum a_n$ **绝对收敛** | $\sum\left\|a_n\right\|<+\infty$（可和） | ✅✅ 最强 |
+      | $\sum a_n$ **收敛** | $a_n\to0$，从而 ==$\left\{a_n\right\}$ 有界== | ✅ 只剩有界性可用 |
+      | $\sum a_n$ **发散** | ==几乎什么都不知道== | ❌ 废条件 |
 
-      ==第二行最实用==：$\sum a_n$ 收敛时，
-      $\sum a_n\cdot\frac{n}{n+1}$、$\sum a_n\arctan n$、$\sum\frac{a_n}{n}$、$\sum a_n\left(1+\frac1n\right)^{n}$
-      **全都收敛**，因为乘的因子都单调有界。看到这种形式直接答收敛。
+      **最后一行是这一节的钥匙**：发散==完全不约束通项==——
+      $a_n$ 可以趋于零得任意快（$\sum\frac{1}{n}$），也可以根本不趋于零（$\sum1$）。
+      所以：
+
+      $$\boxed{\ \text{题设里只要出现"发散"，乘积的结论就一定是"不一定"}\ }$$
+
+      ==看到带"发散"的选项不用犹豫，直接去构造反例==，
+      而且因为约束太松，两个方向的反例都极好造。
+      **这条能把选择题里一半的选项当场排除掉，不需要灵感。**
     ` },
+
+    { t: 'key', id: 'only-theorem', title: '唯一可靠的乘积定理：有界 $\\times$ 绝对可和', c: String.raw`
+      $$\boxed{\ \left|a_n\right|\leq M\ \text{且}\ \sum\left|b_n\right|<+\infty
+      \ \Longrightarrow\ \sum\left|a_nb_n\right|\leq M\sum\left|b_n\right|<+\infty\ }$$
+
+      一行比较判别法就完了。==记住这一条，乘积类的正面结论全是它的特例==：
+
+      | 情形 | 为什么落进上式 |
+      |---|---|
+      | 两个都绝对收敛 | 绝对收敛 $\Rightarrow$ 通项有界，另一个可和 |
+      | 一个收敛、另一个**绝对**收敛 | 收敛 $\Rightarrow$ 有界；对方可和 |
+      | 一个收敛、另一个**正项**收敛 | ==正项收敛就是绝对收敛==（$\left\|b_n\right\|=b_n$） |
+      | $a_n,b_n\geq0$ 且都收敛 | 同上 |
+
+      **另有一条机制完全不同的定理**（不要求任何一方绝对收敛）：
+      [阿贝尔判别法](#/calculus/series/general-series?at=two-tests) ——
+      $\sum a_n$ 收敛、$b_n$ ==单调有界==（$b_n$ 不必是级数的通项），则 $\sum a_nb_n$ 收敛。
+      $\sum a_n\cdot\frac{n}{n+1}$、$\sum a_n\arctan n$、$\sum\frac{a_n}{n}$ 都靠它，
+      ==它用的是分部求和，不是放缩==，所以能对付条件收敛。
+    ` },
+
+    { t: 'compare',
+      id: 'product-matrix',
+      title: '四种组合，一次看全',
+      cols: ['$\\sum a_n$', '$\\sum b_n$', '$\\sum a_nb_n$', '反例 / 依据'],
+      rows: [
+        ['收敛', '收敛', '==不一定==', '$a_n=b_n=\\frac{(-1)^{n}}{\\sqrt n}\\Rightarrow a_nb_n=\\frac1n$ 发散'],
+        ['收敛', '收敛且 ==$b_n>0$==', '**绝对收敛**', '有界 $\\times$ 绝对可和'],
+        ['收敛', '发散', '不一定', '$\\frac{1}{n^{2}}\\times\\frac1n$ 收敛；$\\frac{1}{n^{2}}\\times n$ 发散'],
+        ['发散', '发散', '不一定', '$\\frac1n\\times\\frac1n$ 收敛；$1\\times1$ 发散'],
+        ['绝对收敛', '绝对收敛', '绝对收敛', '有界 $\\times$ 绝对可和'],
+        ['收敛', '$b_n$ 单调有界', '收敛', '阿贝尔判别法'],
+      ] },
+
+    { t: 'key', id: 'why-sqrt-n', title: '为什么反例总是 $\\frac{(-1)^{n}}{\\sqrt n}$', c: String.raw`
+      第一行那个反例不是碰运气碰出来的，它是==被逼出来的唯一形状==。
+
+      要让 $\sum a_nb_n$ 发散，就要让两个因子==尽可能大==。
+      收敛级数的通项能大到什么程度？靠符号抵消，$a_n=\dfrac{(-1)^{n}}{n^{p}}$ 对
+      ==任意 $p>0$ 都收敛==（莱布尼茨），$p$ 可以取得很小。
+      而乘积 $a_nb_n=\dfrac{1}{n^{2p}}$ 发散 $\iff 2p\leq1\iff p\leq\dfrac12$。
+
+      ==所以 $p=\frac12$ 恰好是临界值==，也是最自然的取法。
+      $p$ 取 $\frac13$、$\frac14$ 同样是反例，但 $\frac{1}{\sqrt n}$ 最好写、最好验。
+
+      **反过来看**：这也解释了为什么"绝对收敛"就没事 ——
+      绝对收敛要求 $\sum\left|a_n\right|<\infty$，
+      ==这就把通项的量级强行压到 $\frac1n$ 以下==，两个一乘远比 $\frac1n$ 小，自然收敛。
+      **条件收敛之所以危险，正是因为它允许通项慢到 $\frac{1}{\sqrt n}$ 这一档。**
+    ` },
+
+    { t: 'example',
+      id: 'ex-product-choice',
+      title: '选择题：四个选项里只有一个对',
+      source: '教材习题',
+      level: 2,
+      problem: String.raw`
+        下列结论中正确的是（　）。
+
+        **A.** 若 $\displaystyle\sum_{n=1}^{\infty}u_n$ 与 $\displaystyle\sum_{n=1}^{\infty}v_n$ 都收敛，则 $\displaystyle\sum_{n=1}^{\infty}u_nv_n$ 必收敛
+
+        **B.** 若 $\displaystyle\sum_{n=1}^{\infty}u_n$ 与 $\displaystyle\sum_{n=1}^{\infty}v_n$ 都发散，则 $\displaystyle\sum_{n=1}^{\infty}u_nv_n$ 必发散
+
+        **C.** 若 $\displaystyle\sum_{n=1}^{\infty}u_n$ 收敛，$\displaystyle\sum_{n=1}^{\infty}v_n$ 发散，则 $\displaystyle\sum_{n=1}^{\infty}u_nv_n$ 必发散
+
+        **D.** 若 $\displaystyle\sum_{n=1}^{\infty}u_n$ 收敛，$\displaystyle\sum_{n=1}^{\infty}v_n\;(v_n>0)$ 收敛，则 $\displaystyle\sum_{n=1}^{\infty}\left|u_nv_n\right|$ 收敛
+      `,
+      idea: String.raw`
+        **不要逐个去想反例，先用[第一原则](#/calculus/series/abstract?at=translate)扫一遍。**
+
+        把每个选项的条件翻译成"通项信息"：
+
+        - **B、C 都含"发散"** $\Rightarrow$ 这个条件对通项==没有任何约束==
+          $\Rightarrow$ 推不出任何必然结论 $\Rightarrow$ ==这两个一定错==。
+          ==扫一眼就能划掉，不用先想出反例。==
+        - **A**：两个都只是"收敛"，只能保证通项有界。
+          而"有界 $\times$ 有界"根本不够 —— 需要至少一边==可和==。
+          $\Rightarrow$ 大概率错，去[条件收敛的反例库](#/calculus/series/abstract?at=counterexamples)里找。
+        - **D**：多了一个 ==$v_n>0$==。
+          正项级数收敛 $=$ 绝对收敛，于是变成"有界 $\times$ 绝对可和"
+          $\Rightarrow$ [唯一可靠的那条定理](#/calculus/series/abstract?at=only-theorem)正好适用。
+
+        ==这道题的题眼就是 D 里那个毫不起眼的 $(v_n>0)$==：
+        把它去掉，D 就退化成 A，立刻变错。命题人是故意加上去的。
+      `,
+      solution: String.raw`
+        **A 错。** 取 $u_n=v_n=\dfrac{(-1)^{n}}{\sqrt n}$。
+        由莱布尼茨判别法两个级数都收敛（条件收敛），但
+        $$u_nv_n=\frac{(-1)^{2n}}{n}=\frac1n,$$
+        $\sum\frac1n$ ==发散==。
+
+        **B 错。** 取 $u_n=v_n=\dfrac1n$。两个都是调和级数，==都发散==，而
+        $$u_nv_n=\frac{1}{n^{2}},$$
+        $\sum\frac{1}{n^{2}}$ ==收敛==。
+
+        **C 错。** 取 $u_n=\dfrac{1}{n^{2}}$（收敛），$v_n=\dfrac1n$（发散），则
+        $$u_nv_n=\frac{1}{n^{3}},$$
+        ==收敛==。
+
+        **D 正确。** 证明如下：
+
+        1. $\sum u_n$ 收敛 $\Rightarrow u_n\to0$ $\Rightarrow$ ==数列 $\left\{u_n\right\}$ 有界==，
+           即存在 $M>0$ 使 $\left|u_n\right|\leq M$ 对一切 $n$ 成立；
+        2. $v_n>0$ 且 $\sum v_n$ 收敛 $\Rightarrow$ ==$\sum v_n$ 就是绝对收敛==；
+        3. 于是
+           $$\left|u_nv_n\right|=\left|u_n\right|\cdot v_n\leq M\,v_n ,$$
+           而 $\sum Mv_n=M\sum v_n$ 收敛；
+        4. 由比较判别法（两边都非负），$\displaystyle\sum_{n=1}^{\infty}\left|u_nv_n\right|$ 收敛。$\blacksquare$
+
+        **答案：D**
+      `,
+      comment: String.raw`
+        ### 为什么"无从下手"——三个认知缺口
+
+        **① 把"收敛"当成了一个强条件。**
+        对乘法而言，==$\sum u_n$ 收敛只能榨出"$u_n$ 有界"这一条==，
+        剩下的信息（部分和的极限存在）在逐项相乘时完全用不上。
+        习惯了"收敛是个好消息"，就会高估 A 的成立可能。
+
+        **② 没意识到"发散"是个废条件。**
+        B、C 之所以能被秒杀，是因为发散对通项毫无约束。
+        ==带"发散"前提却要推出"必发散"的选项，几乎可以无脑判错==——
+        这类命题在考研选择题里出现过很多次，全是错的。
+
+        **③ 忽略了括号里的 $(v_n>0)$。**
+        它看起来像个无关紧要的补充，实际上==把条件从"收敛"升级成了"绝对收敛"==，
+        是 D 唯一能成立的原因。
+        ==读抽象级数题时，"正项""$>0$""绝对"这些字眼要当成关键词圈出来。==
+
+        ### 举反例的两条经验
+
+        - **要"收敛但乘积发散"** $\Rightarrow$ 用 $\dfrac{(-1)^{n}}{\sqrt n}$
+          （[原因见上一条](#/calculus/series/abstract?at=why-sqrt-n)）；
+        - **要"发散但乘积收敛"** $\Rightarrow$ 用 $\dfrac1n$
+          （发散得最"温和"的级数，平方立刻收敛）。
+
+        ==这两个就是整章的主力反例==，覆盖面极广。
+
+        ### 变式预判
+
+        | 若把 D 改成 | 还对吗 | 为什么 |
+        |---|---|---|
+        | 去掉 $v_n>0$ | ==错== | 退化成 A |
+        | 结论改成 $\sum u_nv_n$ 收敛（不带绝对值） | ==仍对== | 绝对收敛蕴含收敛 |
+        | 条件换成 $\sum u_n$ 绝对收敛、$\sum v_n$ 收敛 | ==仍对== | 角色互换：$v_n\to0$ 有界，$u_n$ 可和 |
+        | 条件换成 $u_n$ 有界（不必是级数）、$\sum v_n$ 绝对收敛 | ==仍对== | 这就是定理本身 |
+
+        ==最后两行值得单独记==：起作用的从来不是"谁是级数"，而是
+        **一方有界、另一方绝对可和**。谁扮演哪个角色无所谓，
+        甚至 $u_n$ 根本不需要构成一个级数（$u_n=(-1)^{n}$、$u_n=\sin n$ 都行）。
+      `,
+    },
 
     /* ================================================================== */
     { t: 'h', id: 'extract', c: '五、抽项、加括号、重排 —— 最容易错的一节' },
