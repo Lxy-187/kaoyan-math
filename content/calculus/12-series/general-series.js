@@ -179,6 +179,10 @@ KM.page({
          拆项、换序、平方都会出事，见[正部负部](#/calculus/series/general-series?at=why-it-matters)。
       6. **误以为 $\sum a_n$ 与 $\sum\left|a_n\right|$ 的和有关系**：没有。
          $\sum\frac{(-1)^{n-1}}{n}=\ln2$，而 $\sum\frac1n=+\infty$。
+
+      全章判别法与性质的**完整前提**汇总成了三张表，
+      见[前提速查](#/calculus/series/abstract?at=tests-prereq)，
+      其中[伪定理清单](#/calculus/series/abstract?at=fake-theorems)可以直接当选择题自测用。
     ` },
 
   ],
