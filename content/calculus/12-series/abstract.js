@@ -149,6 +149,39 @@ KM.page({
       证明见[下面的例题](#/calculus/series/abstract?at=ex-cauchy-trick)。
     ` },
 
+    { t: 'key', id: 'ell2', title: '平方可和自成一个世界：$\\ell^{2}$', c: String.raw`
+      "$\sum u_n^{2}$ 收敛"值得当成一个==独立的身份==来看，而不只是一个技巧：
+      它说的是把 $\left(u_1,u_2,\dots\right)$ 看成无穷维向量时，==这个向量的长度有限==
+      $$\left\|u\right\|_{2}=\sqrt{\sum u_n^{2}}<\infty .$$
+      满足这个条件的数列全体记作 $\ell^{2}$，==它是希尔伯特空间的原型==。
+
+      于是 $u^{2},v^{2},\left|uv\right|,(u+v)^{2}$ 这四个量之间的关系，
+      全部由两条几何事实决定：
+
+      | 事实 | 不等式 | 说的是 |
+      |---|---|---|
+      | **柯西–施瓦茨** | $\sum\left\|u_nv_n\right\|\leq\left\|u\right\|_{2}\left\|v\right\|_{2}$ | 两个 $\ell^{2}$ 向量的"内积"有限 |
+      | **闵可夫斯基**（三角不等式） | $\left\|u+v\right\|_{2}\leq\left\|u\right\|_{2}+\left\|v\right\|_{2}$ | ==$\ell^{2}$ 对加法封闭==，是个线性空间 |
+
+      **由此立刻得到一个单向阀**：
+
+      $$\boxed{\ \sum u_n^{2},\ \sum v_n^{2}\ \text{收敛}
+      \ \Longrightarrow\ \sum\left|u_nv_n\right|,\ \sum(u_n+v_n)^{2}\ \text{收敛}\ }$$
+      $$\text{反过来}\ \sum\left|u_nv_n\right|\ \text{收敛}\ \not\Longrightarrow\ \sum u_n^{2}\ \text{收敛}$$
+
+      ==正方向成立、反方向不成立==，原因很直观：
+      $u_n^{2}+v_n^{2}$ 能控制住 $\left|u_nv_n\right|$（均值不等式），
+      但 $\left|u_nv_n\right|$ 小==只说明"乘积小"，不说明"各自都小"== ——
+      完全可以一个极大、另一个极小去补偿。
+      反例：$u_n=1$、$v_n=\frac{1}{n^{2}}$，$\sum\left|u_nv_n\right|=\sum\frac{1}{n^{2}}$ 收敛，
+      而 $\sum u_n^{2}=\sum1$ 发散。
+
+      **考场上只需要初等版本**，不必提 $\ell^{2}$：
+      $$2\left|u_nv_n\right|\leq u_n^{2}+v_n^{2},\qquad
+      \left(u_n+v_n\right)^{2}\leq2\left(u_n^{2}+v_n^{2}\right).$$
+      ==右边这条一步就能证 $\sum(u_n+v_n)^{2}$ 收敛==，见[例题](#/calculus/series/abstract?at=ex-square-choice)。
+    ` },
+
     /* ================================================================== */
     { t: 'h', id: 'product', c: '四、乘积：逐项相乘' },
 
@@ -426,6 +459,26 @@ KM.page({
       这是正项级数放缩里最常用的一个套路。
     ` },
 
+    { t: 'key', id: 'compare-two-sided', title: '比较判别法是**双边**的：$u_n\\leq v_n$ 只压住了一半', c: String.raw`
+      比较判别法的完整前提是
+      $$\boxed{\ 0\leq u_n\leq v_n\ }$$
+      ==两个不等号缺一不可==，而 $0\leq u_n$ 那一半特别容易被忽略，
+      因为在正项级数的语境里它是自动成立的，久而久之就不当回事了。
+
+      **为什么必须要下界**：级数发散有两种方式 ——
+      跑向 $+\infty$，或者跑向 $-\infty$（还有震荡）。
+      $u_n\leq v_n$ 只挡住了==往上跑==这一条路，
+      ==$u_n$ 完全可以往下无限跑==。
+
+      **反例只要一秒**：$u_n=-1$，$v_n=\dfrac{1}{n^{2}}$。
+      确实处处 $u_n\leq v_n$，$\sum v_n$ 收敛，
+      而 $\sum u_n=\sum(-1)=-\infty$ ==发散==。
+
+      **正确的双边版本**：若 $\left|u_n\right|\leq v_n$ 且 $\sum v_n$ 收敛，
+      则 $\sum u_n$ ==绝对收敛==。
+      ==注意是绝对值，不是单向不等号== —— 这才是能用的形式。
+    ` },
+
     /* ================================================================== */
     { t: 'h', id: 'workflow', c: '七、解题流程与反例库' },
 
@@ -446,23 +499,154 @@ KM.page({
         或者先证绝对收敛（这一步会把问题变成正项问题）。` },
     ] },
 
-    { t: 'key', id: 'counterexamples', title: '反例库：背下这六个就够了', c: String.raw`
-      | 级数 | 身份 | 专门用来打掉 |
+    { t: 'key', id: 'meta-method', title: '元方法：每个选项都是"某个定理被砍掉一个前提"', c: String.raw`
+      抽象级数的选择题，四个选项==往往各自影射一个不同的定理==，
+      套不上同一条判据。这时候不要去"想反例"，而是按下面四步走：
+
+      1. **认出这一项在影射哪个定理**（比较判别法？柯西不等式？$p$ 级数？）；
+      2. **把那个定理的完整前提默写出来**；
+      3. **对比题目给的条件，找出被删掉的那一条**；
+      4. ==沿着"被删掉的条件"的方向去构造反例==。
+
+      ==第 4 步是有方向的，不是碰运气==。缺什么条件，反例就往哪个方向造：
+
+      | 被删掉的前提 | 反例往哪造 | 现成的 |
+      |---|---|---|
+      | 正项 $u_n\geq0$ | 让 $u_n$ ==往负的方向跑== | $u_n=-1$ |
+      | 绝对收敛降级为收敛 | 用条件收敛的 | $\frac{(-1)^{n}}{\sqrt n}$ |
+      | 单调性 | 让通项==忽大忽小== | $\frac{1}{\sqrt n+(-1)^{n}}$ |
+      | 有界性 | 让通项==无界== | $u_n=n$ |
+      | "各自都小"（只给了乘积小） | ==一个极大、一个极小互补== | $u_n=1,\ v_n=\frac{1}{n^{2}}$ |
+
+      **还有一类更省事**：==有些选项影射的"定理"根本不存在==，
+      是命题人照着直觉编的（比如"发散级数的通项必 $\geq\frac1n$"）。
+      这种一眼看出是伪命题，反例通常极好找。
+    ` },
+
+    { t: 'key', id: 'counterexamples', title: '反例库：背下这七个就够了', c: String.raw`
+      | 级数 / 数列 | 身份 | 专门用来打掉 |
       |---|---|---|
       | $\dfrac{(-1)^{n}}{\sqrt n}$ | 条件收敛 | ==平方、乘积==（$a_n^{2}=\frac1n$ 发散） |
       | $\dfrac{(-1)^{n-1}}{n}$ | 条件收敛 | ==奇偶项、相减==（各自 $\pm\infty$） |
       | $\dfrac1n$ | 正项发散 | "平方收敛 $\Rightarrow$ 原级数收敛" |
       | $\dfrac{1}{n^{2}}$ | 绝对收敛 | "开方后仍收敛"（$\sqrt{a_n}=\frac1n$ 发散） |
       | $(-1)^{n}$ | 发散，但部分和有界 | "加括号后收敛 $\Rightarrow$ 原级数收敛" |
-      | $\dfrac{1}{n\ln n}$ | 正项发散 | 比较法定不了的边界情形 |
+      | $\dfrac{1}{n\ln n}$ | 正项发散，==但处处 $<\frac1n$== | =="发散级数的通项必 $\geq\frac1n$"== |
+      | $u_n\equiv-1$ | 发散到 $-\infty$ | ==比较判别法漏掉"$u_n\geq0$"== |
 
       ==选前两个时有个小技巧==：需要"平方后发散"就用 $\frac{1}{\sqrt n}$ 那个
       （因为 $\left(\frac{1}{\sqrt n}\right)^{2}=\frac1n$ 恰好踩在发散边界）；
       需要"拆开后发散"就用 $\frac1n$ 那个。
+
+      **第六行值得单独说**：$\frac{1}{n\ln n}$ 发散，却对每个 $n\geq3$ 都严格小于 $\frac1n$。
+      ==它是"$\frac1n$ 不是发散的下界"这件事最便宜的证据==，
+      背后是[根本不存在最慢的发散级数](#/calculus/series/beyond?at=abel-dini)。
     ` },
 
     /* ================================================================== */
-    { t: 'h', id: 'examples', c: '八、两道示范' },
+    { t: "h", id: "examples", c: "八、三道示范" },
+
+    { t: 'example',
+      id: 'ex-square-choice',
+      title: '选择题：四个选项，四个不同的定理',
+      source: '教材习题',
+      level: 3,
+      problem: String.raw`
+        下列结论中正确的是（　）。
+
+        **A.** 若 $\displaystyle\sum_{n=1}^{\infty}\left|u_nv_n\right|$ 收敛，则 $\displaystyle\sum_{n=1}^{\infty}u_n^{2}$ 与 $\displaystyle\sum_{n=1}^{\infty}v_n^{2}$ 都收敛
+
+        **B.** 若 $\displaystyle\sum_{n=1}^{\infty}u_n^{2}$ 和 $\displaystyle\sum_{n=1}^{\infty}v_n^{2}$ 都收敛，则 $\displaystyle\sum_{n=1}^{\infty}\left(u_n+v_n\right)^{2}$ 收敛
+
+        **C.** 若 $\displaystyle\sum_{n=1}^{\infty}v_n$ 收敛且 $u_n\leq v_n$，则 $\displaystyle\sum_{n=1}^{\infty}u_n$ 收敛
+
+        **D.** 若 $\displaystyle\sum_{n=1}^{\infty}u_n$ 发散（$u_n\geq0$），则 $u_n\geq\dfrac1n$
+      `,
+      idea: String.raw`
+        **这道题和[乘积那道](#/calculus/series/abstract?at=ex-product-choice)完全不是一个套路。**
+        上一道四个选项都在考乘积，一条判据可以横扫；
+        这一道==四个选项各考一个不同的定理==，必须[逐个认门](#/calculus/series/abstract?at=meta-method)。
+
+        先给每一项"认亲"，看它在影射谁、又偷偷删了什么：
+
+        | 选项 | 影射的定理 | 完整前提 | 题目动了什么手脚 |
+        |---|---|---|---|
+        | **A** | 柯西–施瓦茨 | 由 $\sum u^{2},\sum v^{2}$ 收敛 $\Rightarrow\sum\left\|uv\right\|$ 收敛 | ==反过来问了== |
+        | **B** | 闵可夫斯基（$\ell^{2}$ 对加法封闭） | —— | ==没动，成立== |
+        | **C** | 比较判别法 | ==$0\leq u_n\leq v_n$== | 删掉了 $u_n\geq0$ |
+        | **D** | （没有这个定理） | —— | ==凭直觉编的伪命题== |
+
+        认完之后，==三个反例的方向就全定了==：
+        A 要"乘积小但各自不都小"$\Rightarrow$ 一个极大一个极小；
+        C 要"往负方向跑"$\Rightarrow$ $u_n$ 取负常数；
+        D 要"比 $\frac1n$ 小却仍发散"$\Rightarrow$ 反例库里的 $\frac{1}{n\ln n}$。
+      `,
+      solution: String.raw`
+        **A 错。** 取 $u_n=1$，$v_n=\dfrac{1}{n^{2}}$。则
+        $$\sum\left|u_nv_n\right|=\sum\frac{1}{n^{2}}\ \text{收敛},\qquad
+        \sum u_n^{2}=\sum1\ \text{发散}.$$
+        ==乘积小只说明"两者不能同时大"，不说明"各自都小"。==
+
+        **B 正确。** 由 $\left(u_n+v_n\right)^{2}\leq2\left(u_n^{2}+v_n^{2}\right)$
+        （等价于 $\left(u_n-v_n\right)^{2}\geq0$），且右端级数
+        $2\sum u_n^{2}+2\sum v_n^{2}$ 收敛。
+        左端非负，由比较判别法即得 $\sum\left(u_n+v_n\right)^{2}$ 收敛。$\blacksquare$
+
+        **C 错。** 取 $u_n=-1$，$v_n=\dfrac{1}{n^{2}}$。
+        确实处处 $u_n\leq v_n$，$\sum v_n$ 收敛，
+        而 $\sum u_n=\sum(-1)$ ==发散到 $-\infty$==。
+        ==比较判别法要的是 $0\leq u_n\leq v_n$，少了下界就不成立。==
+
+        **D 错。** 取 $u_n=\dfrac{1}{n\ln n}\;(n\geq3)$，它非负、级数发散
+        （[积分判别法](#/calculus/series/convergence?at=cauchy-integral)），
+        但==对每个 $n\geq3$ 都有 $u_n<\dfrac1n$==。
+        更省事的反例：$u_n=\dfrac{1}{2n}$，发散且处处 $<\dfrac1n$。
+
+        **答案：B**
+      `,
+      comment: String.raw`
+        ### A 与 B 是同一个不等式的两个方向
+
+        两者都由 $2\left|u_nv_n\right|\leq u_n^{2}+v_n^{2}$ 支配，但方向相反：
+
+        $$\underbrace{\sum u_n^{2},\sum v_n^{2}\ \text{收敛}}_{\text{信息强}}
+        \ \Longrightarrow\ \underbrace{\sum\left|u_nv_n\right|,\ \sum(u_n+v_n)^{2}\ \text{收敛}}_{\text{信息弱}}$$
+
+        ==这是一个单向阀==：$u^{2}+v^{2}$ 能控制住 $\left|uv\right|$，
+        反过来 $\left|uv\right|$ 控制不了 $u^{2}+v^{2}$。
+        用 $\ell^{2}$ 的语言说，B 就是==三角不等式 $\left\|u+v\right\|\leq\left\|u\right\|+\left\|v\right\|$==，
+        详见[平方可和自成一个世界](#/calculus/series/abstract?at=ell2)。
+
+        **顺带一个常用推论**：B 说明"平方可和"这个性质==对加法封闭==，
+        所以 $\sum u_n^{2}$、$\sum v_n^{2}$ 收敛时，
+        $\sum(u_n-v_n)^{2}$、$\sum\left|u_nv_n\right|$、$\sum\frac{u_n}{n}$ 也全都收敛
+        （最后一个取 $v_n=\frac1n$）。
+
+        ### D 最值得警惕：它影射的定理根本不存在
+
+        很多人会觉得"$\sum\frac1n$ 是发散的临界，所以发散的通项不能比 $\frac1n$ 小"。
+        ==这个直觉是错的，而且错得很彻底==：
+        $\frac{1}{n\ln n}$、$\frac{1}{n\ln n\ln\ln n}$ …… 一个比一个小，
+        ==却全都发散==。
+
+        更进一步，[阿贝尔–迪尼定理](#/calculus/series/beyond?at=abel-dini)证明了
+        **根本不存在"最慢的发散级数"** ——
+        给定任何发散的 $\sum a_n$，$\sum\frac{a_n}{S_n}$ 仍然发散且更小。
+        所以"发散有一条下界线"这种命题==永远是错的==，不必找反例也能判。
+
+        ### 和上一道选择题的对照
+
+        | | [乘积那道](#/calculus/series/abstract?at=ex-product-choice) | 本题 |
+        |---|---|---|
+        | 四个选项 | 同一个运算（乘积），换条件 | ==四个不同的定理== |
+        | 方法 | 一条判据横扫（"含发散 $\Rightarrow$ 不一定"） | ==逐个认门，找被删的前提== |
+        | 难点 | 看穿 $(v_n>0)$ 的作用 | 认出 D 是伪定理、C 少了下界 |
+
+        ==做题前先判断是哪一类==：
+        选项之间"形式相似只换条件"的，找统一判据；
+        "形式各异"的，就得一个个对照定理的前提。
+      `,
+    },
 
     { t: 'example',
       id: 'ex-judge',
