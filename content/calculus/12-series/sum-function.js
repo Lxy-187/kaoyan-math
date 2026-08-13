@@ -26,7 +26,7 @@ KM.page({
 
       | 题目给的是 | 走哪条 |
       |---|---|
-      | 现成的一般项，形状眼熟 | ① [查字典](#/calculus/series/power-series?at=dict) |
+      | 现成的一般项，形状眼熟 | ① [查字典](#/calculus/series/power-series?at=dict)（对不上号时先看[两阶段模型](#/calculus/series/power-series?at=two-stages)） |
       | 系数里带 $n$ 或 $\dfrac1n$ | ② 逐项求导 / 积分 |
       | 系数是有理式（如 $\dfrac{1}{n(n+1)}$） | ③ 裂项拆开，退回 ①② |
       | ==只给递推关系==，通项难求或求出来也认不出 | ④ **构造微分方程** |
