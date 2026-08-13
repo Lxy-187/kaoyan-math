@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>考研数学一 · 复习知识库</title>
+
+<!-- 缓存版本号：改完内容后把本文件里所有 20260813 替换成当天日期，
+     否则手机 / 平板会一直拿旧的 CSS 与 JS。content/ 下的内容文件由
+     app.js 读这个 meta 自动加同样的后缀，不用逐个改。 -->
+<meta name="km-version" content="20260813">
+
+<!-- 添加到主屏幕后全屏运行 -->
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="数学一">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#fbfaf8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon/favicon-32.png">
+
+<link rel="stylesheet" href="vendor/katex/katex.min.css">
+<link rel="stylesheet" href="assets/css/tokens.css?v=20260813">
+<link rel="stylesheet" href="assets/css/layout.css?v=20260813">
+<link rel="stylesheet" href="assets/css/typography.css?v=20260813">
+<link rel="stylesheet" href="assets/css/blocks.css?v=20260813">
+
+<script src="vendor/katex/katex.min.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <button class="icon-btn only-mobile" id="btn-menu" title="目录" aria-label="打开目录">☰</button>
+
+  <a class="brand" href="#/">
+    <span class="brand-mark">∫</span>
+    <span class="brand-text">
+      <b>考研数学一</b>
+      <small>个人思路与题型库</small>
+    </span>
+  </a>
+
+  <div class="search-wrap">
+    <input id="search-input" type="search" placeholder="搜索题型 / 结论 / 关键词…   （按 / 聚焦）" autocomplete="off" spellcheck="false">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+
+  <div class="topbar-actions">
+    <button class="icon-btn" id="btn-expand" title="展开 / 折叠本页全部解答">⇕</button>
+    <button class="icon-btn" id="btn-theme" title="切换明暗主题">◐</button>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <span>知识树</span>
+      <button class="text-btn" id="btn-collapse-all">全部折叠</button>
+    </div>
+    <nav id="nav-tree" class="nav-tree"></nav>
+    <div class="sidebar-foot">
+      <span id="stat-line"></span>
+    </div>
+  </aside>
+
+  <div class="scrim" id="scrim"></div>
+
+  <main class="main" id="main">
+    <div id="view"></div>
+  </main>
+
+  <aside class="toc" id="toc"></aside>
+</div>
+
+<script src="assets/js/store.js?v=20260813"></script>
+<script src="assets/js/markdown.js?v=20260813"></script>
+<script src="assets/js/blocks.js?v=20260813"></script>
+<script src="assets/js/sidebar.js?v=20260813"></script>
+<script src="assets/js/search.js?v=20260813"></script>
+<script src="content/manifest.js?v=20260813"></script>
+<script src="assets/js/app.js?v=20260813"></script>
+
+</body>
+</html>
