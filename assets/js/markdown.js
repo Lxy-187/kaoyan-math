@@ -28,6 +28,7 @@
     '\\du':     '\\,\\mathrm{d}u',
     '\\ds':     '\\,\\mathrm{d}s',
     '\\dy':     '\\,\\mathrm{d}y',
+    '\\dz':     '\\,\\mathrm{d}z',
     '\\dtheta': '\\,\\mathrm{d}\\theta',
     '\\dxy':    '\\,\\mathrm{d}x\\,\\mathrm{d}y',
     '\\R':      '\\mathbb{R}',
