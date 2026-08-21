@@ -185,24 +185,32 @@ KM.tree([
       {
         id: 'determinant', no: '1', title: '行列式',
         topics: [
-          { id: 'computation', title: '行列式的计算技巧' },
-          { id: 'special',     title: '特殊行列式与递推' },
+          { id: 'computation', title: '行列式的计算技巧',
+            file: 'content/linear-algebra/01-determinant/computation.js' },
+          { id: 'special',     title: '特殊行列式与递推',
+            file: 'content/linear-algebra/01-determinant/special.js' },
         ],
       },
       {
         id: 'matrix', no: '2', title: '矩阵',
         topics: [
-          { id: 'operations',  title: '矩阵运算与可逆性' },
-          { id: 'rank',        title: '秩的性质与求法' },
-          { id: 'block',       title: '分块矩阵与初等变换' },
-          { id: 'equations',   title: '矩阵方程与抽象矩阵' },
+          { id: 'operations',  title: '矩阵运算与可逆性',
+            file: 'content/linear-algebra/02-matrix/operations.js' },
+          { id: 'rank',        title: '秩的性质与求法',
+            file: 'content/linear-algebra/02-matrix/rank.js' },
+          { id: 'block',       title: '分块矩阵与初等变换',
+            file: 'content/linear-algebra/02-matrix/block.js' },
+          { id: 'equations',   title: '矩阵方程与抽象矩阵',
+            file: 'content/linear-algebra/02-matrix/equations.js' },
         ],
       },
       {
         id: 'vectors', no: '3', title: '向量组',
         topics: [
-          { id: 'independence', title: '线性相关性的判定与证明' },
-          { id: 'basis',        title: '极大无关组、秩与等价' },
+          { id: 'independence', title: '线性相关性的判定与证明',
+            file: 'content/linear-algebra/03-vectors/independence.js' },
+          { id: 'basis',        title: '极大无关组、秩与等价',
+            file: 'content/linear-algebra/03-vectors/basis.js' },
           { id: 'space',        title: '向量空间、基与坐标变换',
             file: 'content/linear-algebra/03-vectors/space.js' },
         ],
@@ -210,9 +218,12 @@ KM.tree([
       {
         id: 'linear-systems', no: '4', title: '线性方程组',
         topics: [
-          { id: 'solvability', title: '解的存在性与结构' },
-          { id: 'parameters',  title: '含参数方程组的讨论' },
-          { id: 'common-sol',  title: '公共解与同解问题' },
+          { id: 'solvability', title: '解的存在性与结构',
+            file: 'content/linear-algebra/04-linear-systems/solvability.js' },
+          { id: 'parameters',  title: '含参数方程组的讨论',
+            file: 'content/linear-algebra/04-linear-systems/parameters.js' },
+          { id: 'common-sol',  title: '公共解与同解问题',
+            file: 'content/linear-algebra/04-linear-systems/common-sol.js' },
         ],
       },
       {
