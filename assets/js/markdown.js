@@ -26,6 +26,8 @@
     '\\dx':     '\\,\\mathrm{d}x',
     '\\dt':     '\\,\\mathrm{d}t',
     '\\du':     '\\,\\mathrm{d}u',
+    '\\dv':     '\\,\\mathrm{d}v',
+    '\\dw':     '\\,\\mathrm{d}w',
     '\\ds':     '\\,\\mathrm{d}s',
     '\\dy':     '\\,\\mathrm{d}y',
     '\\dz':     '\\,\\mathrm{d}z',
