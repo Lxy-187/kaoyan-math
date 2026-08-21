@@ -264,7 +264,7 @@ KM.page({
       | 从 | 到 | 桥梁 |
       |---|---|---|
       | $B(n,p)$ | $P(\lambda)$ | ==$n$ 大 $p$ 小==，$\lambda=np$（泊松定理） |
-      | $B(n,p)$ | $N(np,npq)$ | ==$n$ 大 $p$ 不小==（中心极限定理，第 5 章） |
+      | $B(n,p)$ | $N(np,npq)$ | ==$n$ 大 $p$ 不小==（[棣莫弗–拉普拉斯](#/probability/lln-clt/clt?at=demoivre)） |
       | $G(p)$ | $E(\lambda)$ | 离散等待 $\to$ 连续等待，共享==无记忆性== |
       | $P(\lambda)$ | $E(\lambda)$ | 同一个泊松流：==数次数 vs 量间隔== |
       | $H(n,M,N)$ | $B(n,\frac MN)$ | ==总体很大==时放不放回无所谓 |

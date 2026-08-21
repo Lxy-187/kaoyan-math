@@ -219,7 +219,7 @@ KM.page({
       comment: String.raw`
         **为什么值得单独记住这道题**：
 
-        1. 它是数理统计里[三大抽样分布](#/probability/random-var/distributions?at=relations)的起点——
+        1. 它是数理统计里[三大抽样分布](#/probability/statistics/distributions?at=chi2)的起点——
            $\chi^{2}(n)$ 就是 $n$ 个独立的 $N(0,1)$ 的平方和；
         2. 它给出 $\E Y=\E X^{2}=\Var X+(\E X)^{2}=1$ 的一个几何解释：
            ==卡方分布的期望等于自由度==；
