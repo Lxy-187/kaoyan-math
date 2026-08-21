@@ -119,21 +119,27 @@ KM.tree([
       {
         id: 'ode', no: '7', title: '常微分方程',
         topics: [
-          { id: 'first-order',   title: '一阶方程的类型识别与解法' },
+          { id: 'first-order',   title: '一阶方程的类型识别与解法',
+            file: 'content/calculus/07-ode/first-order.js' },
           { id: 'solution-structure', title: '解的结构：通解、特解与叠加原理',
             file: 'content/calculus/07-ode/solution-structure.js' },
           { id: 'linear-const',  title: '高阶常系数线性方程',
             file: 'content/calculus/07-ode/linear-const.js' },
-          { id: 'euler',         title: '欧拉方程与可降阶方程' },
-          { id: 'applications',  title: '微分方程应用题' },
+          { id: 'euler',         title: '欧拉方程与可降阶方程',
+            file: 'content/calculus/07-ode/euler.js' },
+          { id: 'applications',  title: '微分方程应用题',
+            file: 'content/calculus/07-ode/applications.js' },
         ],
       },
       {
         id: 'vector-geometry', no: '8', title: '向量代数与空间解析几何',
         topics: [
-          { id: 'vector-ops',  title: '向量运算与几何意义' },
-          { id: 'plane-line',  title: '平面与直线' },
-          { id: 'surfaces',    title: '曲面、空间曲线与投影' },
+          { id: 'vector-ops',  title: '向量运算与几何意义',
+            file: 'content/calculus/08-vector-geometry/vector-ops.js' },
+          { id: 'plane-line',  title: '平面与直线',
+            file: 'content/calculus/08-vector-geometry/plane-line.js' },
+          { id: 'surfaces',    title: '曲面、空间曲线与投影',
+            file: 'content/calculus/08-vector-geometry/surfaces.js' },
         ],
       },
       {
