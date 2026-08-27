@@ -258,6 +258,8 @@ KM.tree([
         topics: [
           { id: 'solvability', title: '解的存在性与结构',
             file: 'content/linear-algebra/04-linear-systems/solvability.js' },
+          { id: 'translation', title: '与向量组语言的互译',
+            file: 'content/linear-algebra/04-linear-systems/translation.js' },
           { id: 'parameters',  title: '含参数方程组的讨论',
             file: 'content/linear-algebra/04-linear-systems/parameters.js' },
           { id: 'common-sol',  title: '公共解与同解问题',

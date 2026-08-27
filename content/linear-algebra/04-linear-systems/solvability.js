@@ -9,7 +9,7 @@ KM.page({
   title: '解的存在性与结构',
   subtitle: '一切都归到两个秩的比较：$\\rank(A)$ 与 $\\rank(A\\mid b)$ 比出**有没有解**，再与 $n$ 比出**有几个解**',
   tags: ['大题', '计算题', '高频'],
-  updated: '2026-08-21',
+  updated: '2026-08-27',
 
   blocks: [
 
@@ -39,6 +39,9 @@ KM.page({
 
       **化成阶梯形后怎么看**：出现 $(0,0,\dots,0\mid d)$ 且 $d\ne0$ 的行 $\Rightarrow$ ==无解==；
       没有这种行时，==非零行数就是 $r$，自由未知量个数是 $n-r$==。
+
+      **这三条同时也是向量组的三条结论**（$b$ 能不能被 $A$ 的列表示、表示法唯不唯一），
+      对照表见[互译词典](#/linear-algebra/linear-systems/translation?at=dictionary)。
     ` },
 
     { t: 'key', id: 'homogeneous', title: '齐次方程组：基础解系', c: String.raw`

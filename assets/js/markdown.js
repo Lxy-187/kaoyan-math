@@ -42,6 +42,7 @@
     '\\Var':    '\\mathrm{D}',
     '\\Cov':    '\\mathrm{Cov}',
     '\\rank':   '\\mathrm{r}',
+    '\\Span':   '\\operatorname{span}',
     '\\tr':     '\\mathrm{tr}',
     '\\diag':   '\\mathrm{diag}',
     '\\abs':    '\\left|#1\\right|',

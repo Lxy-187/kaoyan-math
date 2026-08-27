@@ -9,7 +9,7 @@ KM.page({
   title: '线性相关性的判定与证明',
   subtitle: '相关 = 存在**不全为零**的系数把它们凑成零。具体向量算秩，抽象向量一律回到定义',
   tags: ['大题', '证明题', '概念辨析', '高频'],
-  updated: '2026-08-21',
+  updated: '2026-08-27',
 
   blocks: [
 
@@ -140,6 +140,10 @@ KM.page({
       ==即"添了 $\beta$ 秩不涨"==。
       这正是[非齐次方程组有解的判据](#/linear-algebra/linear-systems/solvability?at=three-cases)，
       **两者本来就是同一句话**：$\beta$ 能被表示 $\iff Ax=\beta$ 有解。
+
+      ==这两章的全部对应关系==整理在
+      [互译词典](#/linear-algebra/linear-systems/translation?at=dictionary)里，
+      连同[方程组那边反过来能读出什么](#/linear-algebra/linear-systems/translation?at=to-vectors)。
 
       **表示法唯一 $\iff$ 秩 $=m$**（列满秩），
       否则有无穷多种表示法。
