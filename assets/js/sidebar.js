@@ -81,10 +81,11 @@
     const items = page ? KM.outline(page) : [];
     if (items.length < 2) { box.innerHTML = ''; return; }
 
+    // 链接正文用渲染好的 html（公式画出来），title 属性只能放纯文本
     box.innerHTML = '<div class="toc-title">本页目录</div>' +
       items.map(it =>
         '<a href="#" data-id="' + it.id + '" class="lv' + it.level + '" title="' +
-        KM.esc(it.text) + '">' + KM.esc(it.text) + '</a>').join('');
+        KM.escAttr(it.text) + '">' + (it.html || KM.esc(it.text)) + '</a>').join('');
 
     box.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', e => {

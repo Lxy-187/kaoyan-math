@@ -230,6 +230,8 @@ a:hover { text-decoration: underline; }
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .toc a:hover { color: var(--fg-strong); text-decoration: none; }
+/* 目录里的公式跟着标题字号走，KaTeX 默认会放大 1.21 倍，行会被撑开 */
+.toc a .katex { font-size: 1em; }
 .toc a.active { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
 .toc a.lv3 { padding-left: var(--sp-5); font-size: 11.5px; }
 

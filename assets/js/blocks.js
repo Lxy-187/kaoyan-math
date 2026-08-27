@@ -168,27 +168,66 @@
       .replace(/\s+/g, '-').replace(/[^\w一-龥-]/g, '') || 'sec';
   }
 
-  /* 提取页面大纲（供右侧目录用）：h 块 + 例题 */
+  /* 提取页面大纲（供右侧目录用）：h 块 + 例题
+     每项给两份文本：
+       html —— 公式真正渲染出来，放进目录链接里；
+       text —— 纯文本近似，放进 title 提示（属性里不能塞 HTML）。 */
   function outline(page) {
     const items = [];
     let ex = 0;
     (page.blocks || []).forEach(b => {
       if (b.t === 'h') {
-        items.push({ level: 2, id: b.id || ('sec-' + slugify(b.c || b.title || '')),
-                     text: stripMd(b.c || b.title) });
+        const raw = b.c || b.title || '';
+        items.push({ level: 2, id: b.id || ('sec-' + slugify(raw)),
+                     text: stripMd(raw), html: outlineHtml(raw) });
       } else if (b.t === 'example') {
         ex++;
+        const pre = '例' + ex;
         items.push({ level: 3, id: b.id || ('ex-' + ex),
-                     text: '例' + ex + (b.title ? ' · ' + stripMd(b.title) : '') });
+                     text: pre + (b.title ? ' · ' + stripMd(b.title) : ''),
+                     html: KM.esc(pre) +
+                           (b.title ? ' · ' + outlineHtml(b.title) : '') });
       }
     });
     return items;
   }
 
+  /* 目录里的标题：去掉强调标记，但把 $...$ 交给 KaTeX 真正画出来。
+     以前是把公式压成一个 □，结果「三、几何：□ 张超平面怎么交」这种
+     标题在目录里等于没写。 */
+  function outlineHtml(s) {
+    const plain = String(s || '').replace(/\*\*|==|~~|`/g, '');
+    const re = /\$([^$]+)\$/g;
+    let out = '', last = 0, m;
+    while ((m = re.exec(plain)) !== null) {
+      out += KM.esc(plain.slice(last, m.index)) + KM.tex(m[1], false);
+      last = re.lastIndex;
+    }
+    return (out + KM.esc(plain.slice(last))).trim();
+  }
+
+  /* 常见记号的纯文本近似，只服务于 title 提示，不求精确 */
+  const TEX_TEXT = {
+    times: '×', cdot: '·', mid: '|', rank: 'r', tr: 'tr', T: 'ᵀ',
+    R: 'R', N: 'N', Z: 'Z', Q: 'Q', C: 'C', E: 'E',
+    alpha: 'α', beta: 'β', gamma: 'γ', lambda: 'λ', xi: 'ξ', eta: 'η',
+    le: '≤', ge: '≥', ne: '≠', iff: '⟺', to: '→',
+    Rightarrow: '⇒', Longrightarrow: '⇒', dots: '…', cdots: '…',
+  };
+
+  function texToText(src) {
+    return String(src)
+      .replace(/\\([a-zA-Z]+)\s*/g, (_, c) => TEX_TEXT[c] || '')
+      .replace(/[{}]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
   function stripMd(s) {
     return String(s || '')
-      .replace(/\$[^$]*\$/g, '□')   // 公式压成一个方块，目录里不适合展开
+      .replace(/\$([^$]*)\$/g, (_, f) => texToText(f))
       .replace(/\*\*|==|~~|`/g, '') // 只去成对标记，单个 = ~ * 是正文内容
+      .replace(/\s+/g, ' ')
       .trim();
   }
 
@@ -197,6 +236,7 @@
   KM.resetExampleCounter = () => { exCounter = 0; };
   KM.outline = outline;
   KM.stripMd = stripMd;
+  KM.texToText = texToText;
   KM.slugify = slugify;
 
 })(window.KM);

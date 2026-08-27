@@ -319,9 +319,14 @@
     return n > 1 ? s + '-' + n : s;
   }
 
+  // 放进 title="..." 之类的属性时要多转一个引号，
+  // 否则标题里一个中文引号之外的 " 就会把属性提前截断
+  const escAttr = s => esc(s).replace(/"/g, '&quot;');
+
   KM.md = md;
   KM.tex = tex;
   KM.esc = esc;
+  KM.escAttr = escAttr;
   KM.resetSlugs = () => slugSeen.clear();
 
 })(window.KM);
