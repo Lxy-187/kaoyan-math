@@ -241,6 +241,17 @@ a:hover { text-decoration: underline; }
   .toc { display: none; }
 }
 
+/* 桌面端手动折叠：☰ 按钮在任何宽度下都可用，收起后正文占满整行。
+   只在 901px 以上生效 —— 900px 及以下侧栏本来就是抽屉，由 .nav-open 管。 */
+@media (min-width: 901px) {
+  body.nav-collapsed .sidebar { display: none; }
+  body.nav-collapsed .shell { grid-template-columns: minmax(0, 1fr) var(--w-toc); }
+}
+/* 这一档右侧目录已经隐藏，别留下 216px 的空槽 */
+@media (min-width: 901px) and (max-width: 1280px) {
+  body.nav-collapsed .shell { grid-template-columns: minmax(0, 1fr); }
+}
+
 @media (max-width: 900px) {
   .shell { grid-template-columns: minmax(0, 1fr); }
   .only-mobile { display: grid; }

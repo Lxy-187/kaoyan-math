@@ -108,6 +108,7 @@
 
     if (at) jumpTo(at); else window.scrollTo(0, 0);
     document.body.classList.remove('nav-open');
+    syncMenuBtn();
   }
 
   /* ------------------------------ 首页 ------------------------------ */
@@ -301,6 +302,36 @@
     set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* 记不住就算了 */ } },
   };
 
+  /* ------------------------- 侧栏开关 -------------------------
+     窄屏（<=900px）侧栏是抽屉，按钮开关 .nav-open；
+     宽屏侧栏常驻，按钮改为折叠它（.nav-collapsed），折叠状态记进 localStorage。 */
+  const isDrawer = () => window.matchMedia('(max-width: 900px)').matches;
+
+  function toggleNav() {
+    if (isDrawer()) {
+      document.body.classList.toggle('nav-open');
+    } else {
+      const off = document.body.classList.toggle('nav-collapsed');
+      store.set('km-nav-collapsed', off ? '1' : '0');
+    }
+    syncMenuBtn();
+  }
+
+  function syncMenuBtn() {
+    const btn = $('#btn-menu');
+    if (!btn) return;
+    const open = isDrawer()
+      ? document.body.classList.contains('nav-open')
+      : !document.body.classList.contains('nav-collapsed');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.classList.toggle('on', isDrawer() && open);
+  }
+
+  function initNav() {
+    if (store.get('km-nav-collapsed') === '1') document.body.classList.add('nav-collapsed');
+    syncMenuBtn();
+  }
+
   function initTheme() {
     document.documentElement.dataset.theme = store.get('km-theme') || 'auto';
     $('#btn-theme').addEventListener('click', () => {
@@ -324,6 +355,7 @@
     KM.buildSearchIndex();
     KM.initSearch();
     initTheme();
+    initNav();
 
     window.addEventListener('hashchange', route);
     watchScrollables();
@@ -332,8 +364,9 @@
     // 顶栏按钮
     $('#btn-expand').addEventListener('click', toggleAllFolds);
     $('#btn-collapse-all').addEventListener('click', KM.collapseAllNav);
-    $('#btn-menu').addEventListener('click', () => document.body.classList.toggle('nav-open'));
-    $('#scrim').addEventListener('click', () => document.body.classList.remove('nav-open'));
+    $('#btn-menu').addEventListener('click', toggleNav);
+    $('#scrim').addEventListener('click', () => { document.body.classList.remove('nav-open'); syncMenuBtn(); });
+    window.addEventListener('resize', syncMenuBtn);
 
     // 快捷键
     document.addEventListener('keydown', e => {
