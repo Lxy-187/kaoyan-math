@@ -377,6 +377,64 @@ KM.tree([
             file: 'content/probability/07-estimation/hypothesis.js' },
         ],
       },
+      {
+        /* 附录性质的一章：不对应大纲考点，按「一个分布一篇」组织。
+           每篇讲清一个概率模型的来历、推导、性质与它在考题里的样子。 */
+        id: 'models', no: '附', title: '分布图鉴',
+        topics: [
+          { id: 'overview',          title: '总纲：分布的家谱',
+            file: 'content/probability/08-models/overview.js' },
+
+          /* —— 离散：从"做一次"长出来的一支 —— */
+          { id: 'bernoulli',         title: '两点分布：一切的原子',
+            file: 'content/probability/08-models/bernoulli.js' },
+          { id: 'binomial',          title: '二项分布：数成功的次数',
+            file: 'content/probability/08-models/binomial.js' },
+          { id: 'geometric',         title: '几何分布：等第一次成功',
+            file: 'content/probability/08-models/geometric.js' },
+          { id: 'negative-binomial', title: '负二项分布：等第 r 次成功',
+            file: 'content/probability/08-models/negative-binomial.js' },
+          { id: 'hypergeometric',    title: '超几何分布：不放回地摸',
+            file: 'content/probability/08-models/hypergeometric.js' },
+          { id: 'multinomial',       title: '多项分布：不止两种结果',
+            file: 'content/probability/08-models/multinomial.js' },
+          { id: 'poisson',           title: '泊松分布：稀有事件的计数',
+            file: 'content/probability/08-models/poisson.js' },
+
+          /* —— 连续：等待、无偏好、叠加 —— */
+          { id: 'uniform',           title: '均匀分布：一切分布的母体',
+            file: 'content/probability/08-models/uniform.js' },
+          { id: 'exponential',       title: '指数分布：不会变老的等待',
+            file: 'content/probability/08-models/exponential.js' },
+          { id: 'gamma',             title: '伽马分布：等到第 k 次',
+            file: 'content/probability/08-models/gamma.js' },
+          { id: 'beta',              title: '贝塔分布：比例的分布',
+            file: 'content/probability/08-models/beta.js' },
+          { id: 'weibull',           title: '韦布尔分布：会老化的寿命',
+            file: 'content/probability/08-models/weibull.js' },
+
+          /* —— 正态一族 —— */
+          { id: 'normal',            title: '正态分布：三次被独立发现',
+            file: 'content/probability/08-models/normal.js' },
+          { id: 'multinormal',       title: '多维正态：把方差换成矩阵',
+            file: 'content/probability/08-models/multinormal.js' },
+          { id: 'lognormal',         title: '对数正态：乘法版的正态',
+            file: 'content/probability/08-models/lognormal.js' },
+          { id: 'cauchy',            title: '柯西分布：期望都不存在',
+            file: 'content/probability/08-models/cauchy.js' },
+
+          /* —— 抽样分布：统计推断的三件工具 —— */
+          { id: 'chi2',              title: '卡方分布：半径的平方',
+            file: 'content/probability/08-models/chi2.js' },
+          { id: 't',                 title: 't 分布：一家酿酒厂逼出来的',
+            file: 'content/probability/08-models/t.js' },
+          { id: 'f',                 title: 'F 分布：两个波动之比',
+            file: 'content/probability/08-models/f.js' },
+
+          { id: 'others',            title: '零星补遗：其余见得到的分布',
+            file: 'content/probability/08-models/others.js' },
+        ],
+      },
     ],
   },
 
