@@ -9,7 +9,7 @@ KM.page({
   title: '凹凸性 / 拐点 / 渐近线',
   subtitle: '一阶导管"往哪走"，二阶导管"怎么弯"。凹凸性不只是画图用——它是**一整类不等式的来源**',
   tags: ['小题', '概念辨析', '高频'],
-  updated: '2026-08-21',
+  updated: '2026-08-31',
 
   blocks: [
 
@@ -31,10 +31,15 @@ KM.page({
       |---|---|
       | 弦在上方 | $f(\lambda x_1+(1-\lambda)x_2)\le\lambda f(x_1)+(1-\lambda)f(x_2)$ |
       | ==切线在下方== | $f(x)\ge f(x_0)+f'(x_0)(x-x_0)$ |
+      | ==三点斜率递增== | $\dfrac{f(x)-f(x_1)}{x-x_1}\le\dfrac{f(x_2)-f(x_1)}{x_2-x_1}\le\dfrac{f(x_2)-f(x)}{x_2-x}$ |
       | $f'$ 递增 | $f''\ge0$ |
 
       ==第二条是[证明不等式](#/calculus/derivative-app/inequality?at=convexity-route)最常用的形式==：
       **凹函数恒在其任意一条切线的上方。**
+
+      第一条和第三条==只是同一件事的两套坐标==：含 $\lambda$ 的式子用相对比例，
+      三点斜率式用绝对坐标差。两者的互推（以及为什么带 $\lambda$ 的式子看着更抽象）见
+      [$t$ 式与三点斜率式的互推](#/threads/lines/substitution?at=ex-t-to-slope)。
     ` },
 
     { t: 'key', id: 'inflection', title: '拐点：凹凸性改变的点', c: String.raw`
@@ -87,6 +92,26 @@ KM.page({
       ==这条用来证[积分不等式](#/calculus/definite/integral-proof?at=route-table)很有效==。
 
       $$\boxed{\ \text{看到"和的函数"与"函数的和"比大小，想凹凸性}\ }$$
+    ` },
+
+    { t: 'key', id: 'hadamard', title: '★ Hermite–Hadamard：割线在上、切线在下的积分版', c: String.raw`
+      $f$ 在 $[a,b]$ 上凹（下凸）且可积，则
+
+      $$f\!\left(\frac{a+b}{2}\right)\;\le\;\frac{1}{b-a}\int_a^b f(x)\dx\;\le\;\frac{f(a)+f(b)}{2}$$
+
+      **它就是那张图的上下两半**：中间是曲边梯形的平均高度，
+
+      | 哪一半 | 几何 | 用哪个刻画去证 |
+      |---|---|---|
+      | 右半 $\le\dfrac{f(a)+f(b)}2$ | 曲线在==割线==下方，积分 $\le$ 梯形面积 | 弦在上方（$\lambda$ 式） |
+      | 左半 $\ge f\!\left(\dfrac{a+b}2\right)$ | 曲线在中点==切线==上方，积分 $\ge$ 矩形面积 | 切线在下方，或对称换元 |
+
+      ==左半用对称换元 $x\to a+b-x$ 证最省事==，而且不需要 $f$ 可导（切线法需要）。
+      两半的完整证明、以及"为什么右半适合用归一化换元、左半适合用对称换元"，见
+      [Hermite–Hadamard 的两种换元证法](#/threads/lines/substitution?at=hadamard)。
+
+      **考场用途**：出现"$\int_a^b f$ 夹在两个数之间"且题目给了 $f''\ge0$（或 $f''\le0$），
+      ==第一反应就是这条==，不必现场构造辅助函数。
     ` },
 
     /* ================================================================== */

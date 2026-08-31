@@ -7,7 +7,7 @@ KM.page({
   title: '按手法重组：另一张地图',
   subtitle: '知识树按「对象」组织，这条轴按「动作」组织 —— 同一个操作手法在不同章节反复出现',
   tags: ['专题', '总纲'],
-  updated: '2026-08-10',
+  updated: '2026-08-31',
 
   blocks: [
 
@@ -39,6 +39,10 @@ KM.page({
       教材必须按对象线性铺开（先讲函数、再讲矩阵），
       但解题时真正被复用的是==动作==，不是对象。
       下面四条主线就是把你说的四个点各自展开成完整的战场地图。
+
+      后来又补了[第五条：换元与坐标变换](#/threads/lines/substitution?at=thesis)。
+      它和前四条不同 —— 前四条各自对应一类具体对象，
+      而它==不针对任何对象，只针对"你站在哪里看"==，所以出现频率比谁都高。
     ` },
 
     { t: 'key', id: 'two-axes', title: '两条正交的轴', c: String.raw`
@@ -66,7 +70,7 @@ KM.page({
     ` },
 
     /* ================================================================== */
-    { t: 'h', id: 'map', c: '二、四条主线的战场地图' },
+    { t: 'h', id: 'map', c: '二、五条主线的战场地图' },
 
     { t: 'compare',
       id: 'thread-map',
@@ -85,6 +89,9 @@ KM.page({
         ['[④ 二次型 / 正交变换](#/threads/lines/quadratic)',
          '消掉交叉项，找主轴',
          '二次型标准化 · ==Hessian 判别== · 二次曲面 · 重积分换元 · 正态分布'],
+        ['[⑤ 换元 / 坐标变换](#/threads/lines/substitution)',
+         '换参考系，==自由度不变==',
+         '定积分对称性 · 齐次与伯努利方程 · 重积分换元 · 相似对角化 · 密度变换'],
       ] },
 
     { t: 'key', id: 'crossings', title: '几个特别值得注意的「跨科交叉口」', c: String.raw`
@@ -97,6 +104,7 @@ KM.page({
       | **二次曲面定型** | 含 $xy,yz,zx$ 的曲面认不出来 | 正交变换消交叉项，读特征值符号 |
       | **重积分换元** | 区域是斜的，积不动 | 正交变换 $\left|J\right|=1$，把区域"扶正" |
       | **微分方程特征方程** | $y''+py'+qy=0$ 的 $\lambda^{2}+p\lambda+q=0$ | 与矩阵特征值同名同源，见[微分算子法](#/calculus/derivative-app/mvt-proof?at=operator-recipe) |
+      | **换元即换基** | 齐次方程令 $u=\dfrac yx$ 把变量解耦 | $P\inv AP=\Lambda$ 换基把矩阵解耦，见[两者是同一件事](#/threads/lines/substitution?at=diagonalize-is-substitution) |
 
       ==看到"同一个词在两科都出现"，基本都不是巧合。==
     ` },
@@ -114,6 +122,11 @@ KM.page({
       - 看到 $\dfrac{x^{2}+1}{x-1}$ 求渐近线 $\to$ 对象是有理式、动作是"带余除法" $\to$ [主线③](#/threads/lines/rational)
       - 看到 $A^{3}=O$ 求 $(E-A)^{-1}$ $\to$ 动作是"几何级数" $\to$ [主线②](#/threads/lines/geometric)
       - 看到 $x^{2}+y^{2}+z^{2}+2xy$ 要判断曲面类型 $\to$ 动作是"消交叉项" $\to$ [主线④](#/threads/lines/quadratic)
+      - 看到 $\deriv yx=\dfrac{x^{2}+y^{2}}{xy}$ 变量分不开 $\to$ 动作是"换参考系解耦" $\to$ [主线⑤](#/threads/lines/substitution?at=lookup)
+
+      ==主线⑤ 的提问方式还要更前一步==：不是"这是什么题"，而是
+      "==我是不是站错了坐标系=="。它的[检索表](#/threads/lines/substitution?at=lookup-table)
+      是按"看到什么特征"排的，卡住时可以直接扫。
     ` },
 
     { t: 'method', id: 'use-on-familiar', title: '用法二：拿它对付「这题我会，跳过」的惯性', c: String.raw`
@@ -151,7 +164,7 @@ KM.page({
       | 候选主线 | 串起来的东西 |
       |---|---|
       | **特征值 / 特征方程** | [常系数线性方程的特征根](#/calculus/ode/linear-const?at=char-roots) ↔ 矩阵特征值 ↔ [微分算子分解](#/calculus/derivative-app/mvt-proof?at=operator) ↔ [移位定理及其在各种变换里的化身](#/calculus/ode/linear-const?at=shift-family) |
-      | **对称性** | 奇偶函数在对称区间的积分 ↔ 重积分的轮换对称 ↔ 曲面积分的对称性 ↔ [拉格朗日方程组的轮换对称](#/calculus/multi-derivative/extremum?at=solve-tricks) |
+      | **对称性**<br>（已被主线⑤部分吸收） | 奇偶函数在对称区间的积分 ↔ 重积分的轮换对称 ↔ 曲面积分的对称性 ↔ [拉格朗日方程组的轮换对称](#/calculus/multi-derivative/extremum?at=solve-tricks)，做法见[把参考系搬到对称中心](#/threads/lines/substitution?at=symmetry) |
       | **构造辅助函数** | [中值定理证明](#/calculus/derivative-app/mvt-proof?at=integrating-factor) ↔ 不等式证明 ↔ 积分不等式 ↔ 参数 $k$ 法 |
       | **"降一阶"** | 变限积分把 $f$ 降成 $F'$ ↔ 分部积分 ↔ 反复罗尔 ↔ 递推公式 |
       | **线性性与叠加** | 线性方程组解的结构 ↔ 线性微分方程通解结构 ↔ 期望的线性性 |

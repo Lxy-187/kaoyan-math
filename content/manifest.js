@@ -456,7 +456,7 @@ KM.tree([
         ],
       },
       {
-        id: 'lines', title: '四条主线',
+        id: 'lines', title: '五条主线',
         topics: [
           { id: 'taylor',    title: '① 泰勒展开：把超越函数换成多项式',
             file: 'content/threads/01-lines/taylor.js' },
@@ -466,6 +466,8 @@ KM.tree([
             file: 'content/threads/01-lines/rational.js' },
           { id: 'quadratic', title: '④ 二次型与正交变换：消掉交叉项',
             file: 'content/threads/01-lines/quadratic.js' },
+          { id: 'substitution', title: '⑤ 换元与坐标变换：换一个参考系',
+            file: 'content/threads/01-lines/substitution.js' },
         ],
       },
       {
